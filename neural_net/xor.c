@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define INPUT 4
+#define INPUT 2
 #define HIDDEN 3
 #define OUTPUT 1
 
@@ -22,15 +22,9 @@ double outputs1[4][1] = {{0},{1},{1},{0}};
 double randomchoice() 
 {
     int randomInt = rand();
-    double randomDouble = (double)randomInt / RAND_MAX - 1;
+    double randomDouble = ((double)randomInt / RAND_MAX) - 1;
     printf("%f\n",randomDouble);
     return randomDouble;
-    /*int randomInt = rand(); // Génère un nombre aléatoire entre 0 et RAND_MAX
-    double randomDouble = (double)randomInt / RAND_MAX; // Normalise entre 0 et 1
-    randomDouble = 2 * randomDouble - 1; // Normalise entre -1 et 1
-    
-    printf("%f\n",randomDouble);
-    return randomDouble;*/
 }
 
 
@@ -44,10 +38,9 @@ double sigmoid(double x)
 double sigmoid_prime(double x)
 {
     return x * (1-x);
-    //return sigmoid(x)*(1-sigmoid(x));
 }
 
-double predict(double inputs[HIDDEN])
+double predict(double inputs[INPUT])
 {
     double hiddens[HIDDEN];
     for(size_t i =0; i<HIDDEN;i++)
@@ -55,6 +48,7 @@ double predict(double inputs[HIDDEN])
         double hidden = 0;
         for(size_t j = 0; j<INPUT;j++)
             hidden+= h_weight[i][j] * inputs[j];
+        hidden = sigmoid(hidden +h_bias[i]);
         hiddens[i] = hidden;
     }
 
@@ -68,7 +62,7 @@ double predict(double inputs[HIDDEN])
         output = sigmoid(output + o_bias[i]);
         outputs[i] = output;
     }
-    return outputs[0];
+    return output;
 }
 
 void learn(double inputs[INPUT], double targets[OUTPUT], double alpha)
@@ -156,7 +150,7 @@ int main()
     {
         for (size_t j =0; j < HIDDEN; j++)
         {
-            h_weight[z][j] = randomchoice();
+            o_weight[z][j] = randomchoice();
         }
 
         o_bias[z] = 0;
@@ -166,11 +160,10 @@ int main()
 
     for(size_t i =0; i < 10000; i++)
     {
-        size_t indexe[] = {0,1,2,3};
         for(size_t j =0; j <4; j++)
         {
-            size_t random = indexe[rand()%4];   
-            learn(inputs1[random], outputs1[random], 0.2);
+            //size_t random = rand()%4;   
+            learn(inputs1[j], outputs1[j], 0.1);
         }
         if((i+1)%1000 ==0)
         {
