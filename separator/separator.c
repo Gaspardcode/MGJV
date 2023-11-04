@@ -5,7 +5,7 @@
 void cut_and_save(SDL_Surface* surface, int x, int y, int nb1, int nb2) 
 {
 	int w = surface->w;
-	int h = surface->h;
+	//int h = surface->h;
 	Uint32 *surf_map = surface->pixels;
 	SDL_Surface *imageN = NULL;
 	int nw= 256/9; 

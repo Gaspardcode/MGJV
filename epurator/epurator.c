@@ -63,7 +63,7 @@ SDL_Surface* drawer(SDL_Surface *surface, int x, int y)
 	rec_draw(surface, x, y, bool, image);
 	SDL_UnlockSurface(image);
 
-	SDL_SaveBMP(image, "finalepu.bmp");
+	//SDL_SaveBMP(image, "finalepu.bmp");
 	return image;
 }
 
