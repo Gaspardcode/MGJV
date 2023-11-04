@@ -11,7 +11,8 @@ void cut_and_save(SDL_Surface* surface, int x, int y, int nb1, int nb2)
 	int nw= 256/9; 
 	int nh = 256/9;
 	imageN = SDL_CreateRGBSurface(0, nw, nh, 32, 0, 0, 0, 0);
-	SDL_Surface *image = SDL_ConvertSurfaceFormat(imageN, SDL_PIXELFORMAT_RGB888, 0);
+	SDL_Surface *image = 
+		SDL_ConvertSurfaceFormat(imageN, SDL_PIXELFORMAT_RGB888, 0);
 	SDL_LockSurface(image);
 	SDL_LockSurface(surface);
 	Uint32* surf_image = image->pixels;
@@ -22,8 +23,10 @@ void cut_and_save(SDL_Surface* surface, int x, int y, int nb1, int nb2)
 		for(int i = 0; i < nw; i++)
 		{
 			Uint8 r, g, b;
-			SDL_GetRGB(surf_map[(i+x) + ((j+y)*w)], surface->format, &r,&g,&b);
-			surf_image[i + j*nw] = SDL_MapRGB(image->format, r, g, b);
+			SDL_GetRGB(surf_map[(i+x) + ((j+y)*w)], 
+					surface->format, &r,&g,&b);
+			surf_image[i + j*nw] = 
+				SDL_MapRGB(image->format, r, g, b);
 		}
 	}
 	SDL_UnlockSurface(image);
@@ -40,7 +43,8 @@ int main(int argc, char** argv)
 	if(argc != 2)
 		errx(EXIT_FAILURE, "Usage: image file");
 	SDL_Surface *surface = IMG_Load(argv[1]);
-	SDL_Surface *surf = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB888, 0);
+	SDL_Surface *surf = 
+		SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB888, 0);
 	for(int i = 0; i < 9; i++)
 	{
 		for(int j = 1; j < 10; j++)

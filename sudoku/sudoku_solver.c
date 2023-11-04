@@ -8,23 +8,29 @@ int solvable_line(unsigned int *array)
 {
 	unsigned int value; 
 	unsigned int line = 9; // line is the length of the square
-	unsigned int loop = 0; // the loop is usefull to know where we want to see in the array
+	unsigned int loop = 0; // the loop is usefull to know 
+			       // where we want to see in the array
 
 	// LINE LOOP
 	for(unsigned int column = 0; column < line; column++)
 	{
 		loop = column;
-		for(unsigned int index = 0 + (line * loop); index < (line * (loop+1)); index++)
+		for(unsigned int index = 0 + (line * loop); index 
+				< (line * (loop+1)); index++)
 		{
 
 			//init the value
 			//line * loop : the nth line
 			value = *(array + index);
-			//if the value is not already discovered we don't care about
+			//if the value is not already 
+			//discovered we do not care about
 			if(value != 0)
 			{
-				// know we need to conpare the value with the rest of the line, v will be the name of the other value
-				for(unsigned int i = index+1; i < (line*(loop+1)); i++)
+				// know we need to conpare the 
+				// value with the rest of the line, 
+				// v will be the name of the other value
+				for(unsigned int i = index+1;
+						i < (line*(loop+1)); i++)
 				{
 					unsigned int v = *(array + i);
 					if(v != 0 && v == value)
@@ -46,14 +52,18 @@ int solvable_column(unsigned int *array, unsigned int len)
 {
 	unsigned int column = 9;
 
-	for(unsigned int column_index = 0; column_index < column; column_index++)
+	for(unsigned int column_index = 0; column_index 
+			< column; column_index++)
 	{
-		for(unsigned int index = column_index; index < len-(9-column_index); index+=column)
+		for(unsigned int index = column_index; index 
+				< len-(9-column_index); index+=column)
 		{
 			unsigned int value = *(array + index);
 			if(value != 0)
 			{
-				for(unsigned int i = index+column; i < len-(8-column_index); i+=column)
+				for(unsigned int i = index+column; i 
+						< len-(8-column_index); 
+						i+=column)
 				{
 					unsigned int v = *(array + i);
 					if(v != 0 && v == value)

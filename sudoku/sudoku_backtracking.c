@@ -13,7 +13,8 @@ int emptyCellCheck(unsigned int *array, unsigned int len)
 
 int rowCheck(unsigned int *array, unsigned int row, unsigned int value)
 {
-	//this function is used to know if a Value can be placed at the array[column + row*9] place
+	//this function is used to know if a Value can be placed at 
+	//the array[column + row*9] place
 
 	for(unsigned int col = 0; col < 9; col++)
 	{
@@ -37,7 +38,8 @@ int columnCheck(unsigned int *array, unsigned int column, unsigned int value)
 	return 0;
 }
 
-int squareCheck(unsigned int *array, unsigned int squareRow, unsigned int squareColumn, unsigned int value)
+int squareCheck(unsigned int *array, unsigned int squareRow, 
+		unsigned int squareColumn, unsigned int value)
 {
 	for(unsigned int i = 0; i < 3; i++)
 	{
@@ -53,7 +55,8 @@ int squareCheck(unsigned int *array, unsigned int squareRow, unsigned int square
 }
 
 
-int allCheck(unsigned int *array, unsigned int row, unsigned int column, unsigned int value)
+int allCheck(unsigned int *array, unsigned int row, unsigned int column, 
+		unsigned int value)
 {
 	int squareRow = row - row%3;
 	int squareColumn = column -column%3;
@@ -67,7 +70,8 @@ int allCheck(unsigned int *array, unsigned int row, unsigned int column, unsigne
 }
 
 
-int solveSudo(unsigned int *array, unsigned int row, unsigned int column, unsigned int len)
+int solveSudo(unsigned int *array, unsigned int row, unsigned int column,
+		unsigned int len)
 {
 	if( row == len-1 && column == len)
 		return 1;
