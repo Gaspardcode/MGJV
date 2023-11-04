@@ -1,22 +1,16 @@
-#Makefile
-
 CC = gcc
-CPPFLAGS =
 CFLAGS = -Wall -Wextra -O3
-LDFLAGS =
-LDLIBS =
+SOURCES = sudoku_backtracking.c sudoku_solver.c main.c
+OBJECTS = $(SOURCES:.c=.o)
+EXECUTABLE = solver
 
+all: $(SOURCES) $(EXECUTABLE)
 
-SRC = sudoku_backtracking.c sudoku_solver.c main.c 
-OBJ = ${SRC:.c=.o}
-DEP= ${SRC:.c=.d}
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@
 
-all: main
-
--include ${DEP}
-
-main: ${OBJ}
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f ${OBJ} ${DEP} main
-# END
+	rm -f $(OBJECTS) $(EXECUTABLE)

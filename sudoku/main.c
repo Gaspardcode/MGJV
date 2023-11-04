@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
 	}
 	unsigned int len = 9*9;
 	unsigned int *array = calloc(len, sizeof (unsigned int));
-	unsigned int *begin = array, *end = array + len;
 	file_to_array(argv[1], array);
 	/*for(int i = 0; begin+i < end; i++)
 	  {
@@ -73,14 +72,7 @@ int main(int argc, char *argv[])
 
 	  }*/
 	int r = solveSudo(array, 0, 0, 9);
-	for(int i = 0; begin+i < end; i++)
-	{
-		if(i%9 != 8)
-			printf("%i ", *(array + i));
-		else
-			printf("%i\n", *(array + i));
-
-	}
+	
 	if(r == 0)
 		printf("fail");
 	array_to_file(strcat(argv[1],".result"), array);
