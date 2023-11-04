@@ -2,7 +2,7 @@
 
 CC = gcc
 CPPFLAGS =
-CFLAGS = -Wall -Wextra -O3 
+CFLAGS = -Wall -Wextra -O3
 LDFLAGS =
 LDLIBS =
 

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int solvable_line(unsigned int *array, unsigned int len)
+int solvable_line(unsigned int *array)
 {
 	unsigned int value; 
 	unsigned int line = 9; // line is the length of the square
@@ -67,7 +67,7 @@ int solvable_column(unsigned int *array, unsigned int len)
 	return 0;
 }
 
-int square(unsigned int *array, unsigned int n, unsigned int len)
+int square(unsigned int *array, unsigned int n)
 {
 	for(unsigned int i = n; i < n + 21;)
 	{
@@ -93,11 +93,11 @@ int square(unsigned int *array, unsigned int n, unsigned int len)
 	return 0;
 }
 
-int solved_square(unsigned int *array, unsigned int len)
+int solved_square(unsigned int *array)
 {
 	for(unsigned int i = 0; i < 61;)
 	{
-		if(square(array, i, len) != 0)
+		if(square(array, i) != 0)
 			return 1;
 		if(i + 3 == 9 || i + 3 == 36)
 			i += 21;
@@ -109,13 +109,13 @@ int solved_square(unsigned int *array, unsigned int len)
 
 int sudoku_auth(unsigned int *array, unsigned int len)
 {
-	int c = solvable_line(array, len);
+	int c = solvable_line(array);
 	if(c == 1)
 		return 1;
 	int c2 = solvable_column(array, len);
 	if(c2 == 1)
 		return 1;
-	int s = solved_square(array, len);
+	int s = solved_square(array);
 	if(s == 1)
 		return 1;
 	return 0;
