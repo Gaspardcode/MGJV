@@ -104,6 +104,12 @@ double* predict(double* inputs)
     outputs[i] = output;
   }
   outputs = softmax(outputs);
+
+  free(h_weight);
+  free(o_weight);
+  free(h_bias);
+  free(o_bias);
+
   return outputs;
 }
 

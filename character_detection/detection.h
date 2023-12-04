@@ -36,7 +36,6 @@ int prepare(int* sudoku)
         }
 
       }
-      printf("-> %i\n", nb);
       
       if(nb > 10)
       {
@@ -51,7 +50,6 @@ int prepare(int* sudoku)
           }
         }
         sudoku[i + ((j-1)*9)] = max;
-        printf(" - - - > %li\n", max);
       }
       else
       {

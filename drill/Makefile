@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O3 -I../epurator -I../separator `pkg-config --cflags sdl2 SDL2_image`
+CFLAGS = -Wall -Wextra -O3 `pkg-config --cflags sdl2 SDL2_image`
 LDLIBS = `pkg-config --libs sdl2 SDL2_image` -lm
-SOURCES =  main.c ../epurator/epurator.c ../separator/separator.c
+SOURCES =  main.c
 OBJECTS = $(SOURCES:.c=.o)
 EXECUTABLE = drill
 
