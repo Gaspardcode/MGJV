@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O3
-SOURCES = sudoku_backtracking.c sudoku_solver.c main.c
+SOURCES = sudoku_backtracking.c sudoku_solver.c solve.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 EXECUTABLE = solver
 

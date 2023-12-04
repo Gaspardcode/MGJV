@@ -15,7 +15,7 @@ void rec_draw(SDL_Surface *surface, int x, int y,
 
 	Uint32 *pix = new_surface->pixels;
 
-	if(r > 216 && g > 32 && b > 32) 
+	if(r > 128 && g > 16 && b > 16) 
 	{
 		bool[x + y*28] = 1;
 		pix[x + y*28] = SDL_MapRGB(new_surface->format, 255, 255, 255);
@@ -212,8 +212,9 @@ void propagation(SDL_Surface *surface)
 }
 
 
-int main()
+int epure(int black_on_white)
 {
+
 	for(int i = 0; i < 9; i++)
 	{
 		for(int j = 1; j < 10; j++)
@@ -228,6 +229,27 @@ int main()
 			SDL_Surface *surf = 
 				SDL_ConvertSurfaceFormat(surface, 
 						SDL_PIXELFORMAT_RGB888, 0);
+      //if the image is white on black (Most of the time)
+			if(black_on_white == 0)
+			{
+				Uint32 *surf_map = surf->pixels;			
+				for(size_t v = 0; v < 784; v++)
+				{
+					Uint8 r, g, b;
+					SDL_GetRGB(surf_map[v], surface->format, &r,&g,&b);
+
+					if(r < 128)
+					{
+						surf_map[v] =SDL_MapRGB(surf->format, 255, 255, 255);
+					}
+					else
+					{
+						surf_map[v] =SDL_MapRGB(surf->format, 128, 128, 128);
+					}
+
+
+				}
+			}
 			propagation(surf);
 			SDL_Surface* clean_case = search(surf);
 			SDL_SaveBMP(clean_case, output_file);

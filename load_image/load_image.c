@@ -21,6 +21,8 @@ void printer(int* image)
 
 int main(int argc, char **argv)
 {
+	if(argc < 1)
+		printf("The function need an argument");
 	char* file = argv[1];
 	printf("%s is loading\n", argv[1]);
 	SDL_Surface *surface = IMG_Load(file);
